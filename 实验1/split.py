@@ -15,12 +15,12 @@ def reData(inputFile, outputFile):
         wordList = line.strip().split()
         tempStr = "BOS "
         for word in wordList[1:]:
-            words = word.split("/")
+            words = word.split("/")  # 却掉/后面的词性标注
             word1 = words[0]
-            tempStr = tempStr + word1 + " "
+            tempStr = tempStr + word1 + " "  # 补上空格用以后续分割
         tempStr += " EOS"
-        fw.write(re.sub(r"[%s]+" % punc, " ", tempStr))
-        fw.write("\n")
+        fw.write(re.sub(r"[%s]+" % punc, " ", tempStr))  # 根据正则表达式去除标点符号
+        fw.write("\n")  # 补写换行符用以后续行遍历
     fw.close()
     f.close()
 
